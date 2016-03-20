@@ -222,6 +222,6 @@ public class StartingClass extends Applet implements Runnable, KeyListener {
     public static Box getbox(){
     	return box;
     }
-	
+	//changes
 
 }
