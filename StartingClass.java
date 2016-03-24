@@ -29,7 +29,6 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 	private Image image, currentSprite, character, characterDown, characterJumped, background,blackbox;
 	private Graphics second;
 	private URL base;
-	private int x,boxpos=1,nextboxpos=0;
 	private static Background bg1, bg2;
 	private static Box box,box1;
 	private Random randomGenerator = new Random();
@@ -38,6 +37,8 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 	private Button btn2=new Button();
 	private String q="";
 	private int flag;
+	//ADDED VARIABLES
+	private int x,boxpos=1,nextboxpos=0;
 	private int xpos; 
 	private int ypos;
 	private boolean rect1Clicked; 
@@ -49,6 +50,8 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 	public void init() {
 
 		setSize(800, 480);
+		
+		//ADDED DECLARATIONS
 		rect1xco = 0; 
 		rect1yco = 380; 
 	    rect1width = 100; 
@@ -79,6 +82,8 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 		currentSprite = character;
 		background = getImage(base, "data/background.png");
 		blackbox=getImage(base,"data/blackbox.png");
+		
+		//ADDED MOUSE LISTENER
 		addMouseListener(this);
 		
 	}
@@ -179,7 +184,7 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 			box.update();
 			box1.update();
 			x=next_box();
-			
+			/*GAVE TWO VARIABLES TO STORE PRESENT BOX AND NEXT BOX AND KEEP SHITFTING VALUES*/
 			if(box.getX() <=0){
 					boxpos=nextboxpos;
 					nextboxpos=x%2;
@@ -277,6 +282,8 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 		     else{
 		    	 flag=0;
 		    	 robot.update(1);
+		    	 
+		    	 //ADDED CODE TO MAKE HIM STAND UP AFTER HE DUCKS 
 		    	 if(robot.isDucked()){
 						currentSprite = character;
 						robot.setDucked(false);
@@ -351,11 +358,10 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 		
 		}
 		
-		g.setColor(Color.red); 
-		  // When the user clicks this will show the coordinates of the click 
-		  // at the place of the click. 
-		  // If the click was in the rectangle show this message 
-		  if (rect1Clicked) {
+		/*THE CODE THAT MAKES HIM APPROPRIATELY JUMP N DUCK
+		 * PLS ADD THE COLLISION CODE AT THE SYSOUT CODE SPACES  
+		 */
+		if (rect1Clicked) {
 			  if(boxpos%2==0 && ropt%2==0){
 				  robot.jump();
 			  }
@@ -377,7 +383,6 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 			  rect1Clicked=false;
 		  }
 		  
-		// else this one 
 		  if (rect2Clicked) {
 				
 			  if(boxpos%2==0 && ropt%2!=0){
@@ -406,6 +411,9 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 		
 		
 	}
+	
+	/* CODE FOR RECOGNISING MOUSE CLICKS*/
+	
 	@Override
 	public void mouseClicked (MouseEvent me) { 
 
@@ -425,7 +433,8 @@ public class StartingClass extends Applet implements Runnable,MouseListener, Key
 
 		 } 
 
-
+	/*NOT REQUIRED TO DEFINE */
+	
 	public void mouseEntered (MouseEvent me) {} 
 	
 	public void mousePressed (MouseEvent me) {} 
